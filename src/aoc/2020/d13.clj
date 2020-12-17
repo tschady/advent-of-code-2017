@@ -35,12 +35,14 @@
 (take 5 (bus-departures (first i)))
 
 (defn bus-match [times [^long idx ^long bus]]
-  (filter #(= 0N (mod (+ idx ^long %) bus)) times))
+  (filter #(= 0 (mod (+ idx ^long %) bus)) times))
 
 (first (reduce (fn [times next-bus]
                  (rest (bus-departures [0 (first (bus-match times next-bus))])))
                (bus-departures (first i))
                (rest i))); 61864066880
+
+;; https://github.com/green-coder/advent-of-code-2020/blob/master/src/aoc/day_13.clj
 
 
 (first (bus-match (bus-departures [0 61864066880]) [91 19]))
